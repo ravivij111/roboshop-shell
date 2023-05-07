@@ -11,3 +11,5 @@ cp /home/centos/roboshop-shell/roboshop.conf /etc/nginx/default.d/roboshop.conf
 echo -e "\e[32m********* Removed the Files /usr/share/nginx/html/* ****************\e[0m"
 systemctl enable nginx
 systemctl restart nginx
+
+echo -e "\e[32m********* nginx started successfully ****************\e[0m"
