@@ -3,7 +3,7 @@ source ${script_path}/common.sh
 
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 yum install nodejs -y
-useradd roboshop
+useradd ${app_user}
 rm -rf /app
 echo -e "\e[32m********* Removal /app Directory Completed ****************\e[0m"
 mkdir /app

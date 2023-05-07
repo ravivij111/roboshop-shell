@@ -2,7 +2,7 @@ script_path=$(dirname $0)
 source ${script_path}/common.sh
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 yum install nodejs -y
-useradd roboshop
+useradd ${app_user}
 rm -rf /app
 mkdir /app
 echo -e "\e[33m********* Created  Directory /app ****************\e[0m"
