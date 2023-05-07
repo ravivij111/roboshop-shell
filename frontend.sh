@@ -1,9 +1,8 @@
 script_path=$(dirname $0)
-echo " dirname  is :"  $script_path
 source ${script_path}/common.sh
 
-echo   $app_user
-exit
+#echo   $app_user
+
 yum install nginx -y
 
 rm -rf /usr/share/nginx/html/*

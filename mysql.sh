@@ -1,3 +1,5 @@
+script_path=$(dirname $0)
+source ${script_path}/common.sh
 dnf module disable mysql -y
 cp /home/centos/roboshop-shell/mysql.repo /etc/yum.repos.d/mysql.repo
 yum install mysql-community-server -y
