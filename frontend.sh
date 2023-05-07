@@ -1,5 +1,5 @@
 script_path=$(dirname $0)
-echo " dirname $0 is :"  ${script_path}
+echo " dirname  is :"  $script_path
 source ${script_path}/common.sh
 exit
 yum install nginx -y
