@@ -12,13 +12,13 @@ unzip /tmp/user.zip
 cd /app
 npm install
 
-cp /home/centos/roboshop-shell/user.service /etc/systemd/system/user.service
+cp ${script_path}/user.service /etc/systemd/system/user.service
 echo -e "\e[33m********* copied the User Service   ****************\e[0m"
 systemctl daemon-reload
 systemctl enable user
 systemctl restart user
 echo -e "\e[33m********* Started the User Service   ****************\e[0m"
-cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
+cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 yum install mongodb-org-shell -y
 mongo --host mongodb-dev.r1devopsb.online </app/schema/user.js
 echo -e "\e[36m********* Connected to MongoDB   ****************\e[0m"

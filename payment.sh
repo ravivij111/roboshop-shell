@@ -9,7 +9,7 @@ cd /app
 unzip /tmp/payment.zip
 cd /app
 pip3.6 install -r requirements.txt
-cp /home/centos/roboshop-shell/payment.service /etc/systemd/system/payment.service
+cp ${script_path}/payment.service /etc/systemd/system/payment.service
 systemctl daemon-reload
 systemctl enable payment
 systemctl restart payment

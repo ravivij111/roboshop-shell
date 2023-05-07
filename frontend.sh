@@ -12,7 +12,7 @@ cd /usr/share/nginx/html
 unzip /tmp/frontend.zip
 
 
-cp /home/centos/roboshop-shell/roboshop.conf /etc/nginx/default.d/roboshop.conf
+cp ${script_path}/roboshop.conf /etc/nginx/default.d/roboshop.conf
 echo -e "\e[32m********* Removed the Files /usr/share/nginx/html/* ****************\e[0m"
 systemctl enable nginx
 systemctl restart nginx

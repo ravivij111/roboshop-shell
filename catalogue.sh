@@ -13,12 +13,12 @@ unzip /tmp/catalogue.zip
 cd /app
 npm install
 echo -e "\e[32m********* Installation of Node JS is completed ****************\e[0m"
-cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service
+cp ${script_path}/catalogue.service /etc/systemd/system/catalogue.service
 systemctl daemon-reload
 systemctl enable catalogue
 systemctl restart catalogue
 echo -e "\e[32m********* Catalogue Service Restarted Successfully ****************\e[0m"
-cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
+cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 yum install mongodb-org-shell -y
 mongo --host mongodb-dev.r1devopsb.online </app/schema/catalogue.js
 echo -e "\e[32m********* Connected to MongoDB Successfully ****************\e[0m"
