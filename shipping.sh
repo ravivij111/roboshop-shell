@@ -11,7 +11,7 @@ cp /home/centos/roboshop-shell/shipping.service /etc/systemd/system/shipping.ser
 
 echo -e "\e[33m********* shipping service enabled erlang   ****************\e[0m"
 yum install mysql -y
-mysql -h mysql-dev.r1devopsb -uroot -pRoboShop@1 < /app/schema/shipping.sql
+mysql -h mysql-dev.r1devopsb.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
 systemctl restart shipping
 
 echo -e "\e[33m********* Installed MySQL in Shipping   ****************\e[0m"
