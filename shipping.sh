@@ -7,7 +7,7 @@ unzip /tmp/shipping.zip
 
 mvn clean package
 mv target/shipping-1.0.jar shipping.jar
-cp shipping.service /etc/systemd/system/shipping.service
+cp /home/centos/roboshop-shell/shipping.service /etc/systemd/system/shipping.service
 
 echo -e "\e[33m********* shipping service enabled erlang   ****************\e[0m"
 yum install mysql -y
