@@ -1,11 +1,12 @@
 yum install nginx -y
 
 rm -rf /usr/share/nginx/html/*
+echo -e "\e[32m********* Removed the Files /usr/share/nginx/html/* ****************\e[0m"
 curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
 cd /usr/share/nginx/html
 unzip /tmp/frontend.zip
 
-cp roboshop.conf /etc/nginx/default.d/roboshop.conf
-
+cp /home/centos/roboshop-shell/roboshop.conf /etc/nginx/default.d/roboshop.conf
+echo -e "\e[32m********* Removed the Files /usr/share/nginx/html/* ****************\e[0m"
 systemctl enable nginx
 systemctl restart nginx
