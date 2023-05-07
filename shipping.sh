@@ -1,6 +1,7 @@
 script=$(realpath "$0")
 script_path=$(dirname "$script")
 source ${script_path}/common.sh
+mysql_root_password=$1
 yum install maven -y
 useradd ${app_user}
 mkdir /app
@@ -14,7 +15,8 @@ cp ${script_path}/shipping.service /etc/systemd/system/shipping.service
 
 echo -e "\e[33m********* shipping service enabled erlang   ****************\e[0m"
 yum install mysql -y
-mysql -h mysql-dev.r1devopsb.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
+mysql -h mysql-dev.r1devopsb.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql
+#RoboShop@1
 systemctl restart shipping
 
 echo -e "\e[33m********* Installed MySQL in Shipping   ****************\e[0m"
