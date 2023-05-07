@@ -1,4 +1,5 @@
-script_path=$(dirname $0)
+script=$(realpath "$0")
+script_path=$(dirname "$script")
 source ${script_path}/common.sh
 yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
 dnf module enable redis:remi-6.2 -y
