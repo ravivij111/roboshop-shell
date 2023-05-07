@@ -1,1 +1,1 @@
-api_usr=roboshop
+app_usr=roboshop
