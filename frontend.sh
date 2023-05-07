@@ -1,6 +1,8 @@
 script_path=$(dirname $0)
 echo " dirname  is :"  $script_path
 source ${script_path}/common.sh
+
+echo  App user is: $app_user
 exit
 yum install nginx -y
 
