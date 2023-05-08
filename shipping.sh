@@ -19,16 +19,18 @@ unzip /tmp/shipping.zip
 mvn clean package
 mv target/shipping-1.0.jar shipping.jar
 cp ${script_path}/shipping.service /etc/systemd/system/shipping.service
-
-echo -e "\e[33m********* shipping service enabled erlang   ****************\e[0m"
-yum install mysql -y
-mysql -h mysql-dev.r1devopsb.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql
-#RoboShop@1
-systemctl restart shipping
-
-echo -e "\e[33m********* Installed MySQL in Shipping   ****************\e[0m"
-
+systemctl daemon-reload
 systemctl enable shipping
 systemctl restart shipping
 
-echo -e "\e[33m********* Restarted the services   ****************\e[0m"
+printhead " shipping service enabled erlang "
+yum install mysql -y
+mysql -h mysql-dev.r1devopsb.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql
+#RoboShop@1
+
+printhead " Installed MySQL in Shipping  "
+
+
+systemctl restart shipping
+
+printhead " Restarted the services "

@@ -15,8 +15,9 @@ func_nodejs(){
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 yum install nodejs -y
 useradd $app_user
+rm -rf /app
 mkdir /app
-curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/user.zip
+curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
 cd /app
 unzip /tmp/${component}.zip
 cd /app
@@ -27,7 +28,7 @@ systemctl daemon-reload
 systemctl enable cart
 systemctl restart ${component}
 
-print_head "service started"
+print_head ${component}" service started"
 
 schema_setup
 
