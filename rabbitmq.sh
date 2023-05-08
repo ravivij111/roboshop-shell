@@ -12,11 +12,17 @@ fi
 curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
 yum install erlang -y
 func_print_head " installed erlang  "
-curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
-yum install rabbitmq-server -y
+curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash  &>> /tmp/roboshop.log
+func_stat_check $?
+func_print_head " Install RabbitMQ "
+yum install rabbitmq-server -y &>> /tmp/roboshop.log
+func_stat_check $?
 systemctl enable rabbitmq-server
-systemctl restart rabbitmq-server
+systemctl restart rabbitmq-server &>> /tmp/roboshop.log
+func_stat_check $?
+func_print_head " RabbitMQ Started and confirm by systemctl status rabbitmq-server "
 rabbitmqctl add_user roboshop ${rabbit_mq_password}
 #roboshop123
-rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>> /tmp/roboshop.log
+func_stat_check $?
 func_print_head " Completed MQ SetUp  "
