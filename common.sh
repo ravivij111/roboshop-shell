@@ -24,7 +24,12 @@ func_java(){
 }
 
 func_app_prereq(){
-  useradd ${app_user}
+  id ${app_user} &>> /tmp/roboshop.log
+  #id gives 0 if user is there else it gives 1
+  if [ $? -ne 0 ]; then
+    useradd ${app_user} &>> /tmp/roboshop.log
+  fi
+
   rm -rf /app
   mkdir /app
   curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
@@ -71,4 +76,16 @@ func_systemd_setup(){
   systemctl enable cart
   systemctl restart ${component} &>> $log_file
   func_print_head ${component}" service started"
+}
+
+func_python(){
+func_print_head " Installing Python "
+yum install python36 gcc python3-devel -y &>> $log_file
+func_app_prereq
+func_print_head " Installing Python Dependencies"
+pip3.6 install -r requirements.txt &>> $log_file
+func_print_head " Update Password in System Service file Python Dependencies"
+sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}}" ${script_path}/${component}.service &>> $log_file
+func_stat_check $?
+func_systemd_setup
 }
