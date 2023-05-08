@@ -7,7 +7,7 @@ yum install redis -y
 
 
 sed -i -e 's|127.0.0.1|0.0.0.0|' /etc/redis/redis.conf /etc/redis.conf
-print_head "Replaced  Started Successfully "
+func_print_head "Replaced  Started Successfully "
 systemctl enable redis
 systemctl restart redis
-print_head " Redis Started Successfully "
+func_print_head " Redis Started Successfully "

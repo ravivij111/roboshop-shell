@@ -32,10 +32,10 @@ func_java(){
 
 
 
-print_head(){
+func_print_head(){
    echo -e "\e[32m********* $* ****************\e[0m"
 }
-schema_setup(){
+func_schema_setup(){
  if [ "$schema_setup" ==  "mongo" ]; then
     cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
     yum install mongodb-org-shell -y
@@ -55,14 +55,14 @@ cd /app
 unzip /tmp/${component}.zip
 cd /app
 npm install
-print_head "Installed Dependencies"
+func_print_head "Installed Dependencies"
 cp ${script_path}/${component}.service /etc/systemd/system/${component}.service
 systemctl daemon-reload
 systemctl enable cart
 systemctl restart ${component}
 
-print_head ${component}" service started"
+func_print_head ${component}" service started"
 
-schema_setup
+func_schema_setup
 
 }

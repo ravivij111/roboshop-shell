@@ -5,7 +5,7 @@ yum install golang -y
 useradd ${app_user}
 rm -rf /app
 mkdir /app
-print_head " Created the directory /app "
+func_print_head " Created the directory /app "
 curl -L -o /tmp/dispatch.zip https://roboshop-artifacts.s3.amazonaws.com/dispatch.zip
 cd /app
 unzip /tmp/dispatch.zip
@@ -16,4 +16,4 @@ cp dispatch.service /etc/systemd/system/dispatch.service
 systemctl daemon-reload
 systemctl enable dispatch
 systemctl restart dispatch
-print_head " completed dispatch "
+func_print_head " completed dispatch "

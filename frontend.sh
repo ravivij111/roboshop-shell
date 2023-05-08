@@ -7,15 +7,15 @@ source ${script_path}/common.sh
 yum install nginx -y
 
 rm -rf /usr/share/nginx/html/*
-print_head " Removed the Files /usr/share/nginx/html/* "
+func_print_head " Removed the Files /usr/share/nginx/html/* "
 curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
 cd /usr/share/nginx/html
 unzip /tmp/frontend.zip
 
 
 cp ${script_path}/roboshop.conf /etc/nginx/default.d/roboshop.conf
-print_head " Removed the Files /usr/share/nginx/html/* **************** "
+func_print_head " Removed the Files /usr/share/nginx/html/* **************** "
 systemctl enable nginx
 systemctl restart nginx
 
-print_head "  nginx started successfully  "
+func_print_head "  nginx started successfully  "
