@@ -8,7 +8,7 @@ then
   echo Imput Roboshop Appuser password is missing
   exit
 fi
-func_print_head " installing RabbitMQ  "
+func_print_head " installing Erlang and Rabbit MQ  "
 curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
 yum install erlang -y
 func_print_head $?
