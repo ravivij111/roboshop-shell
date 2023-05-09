@@ -20,11 +20,11 @@ func_print_head " Starting RabbitMQ service "
 systemctl enable rabbitmq-server
 systemctl restart rabbitmq-server &>> /tmp/roboshop.log
 func_stat_check $?
-func_print_head "  RabbitMQ Service Status check  "
-systemctl status rabbitmq-server
-func_print_head " Completed RabbitMQ Service Status check  "
+#func_print_head "  RabbitMQ Service Status check  "
+#systemctl status rabbitmq-server
+#func_print_head " Completed RabbitMQ Service Status check  "
 func_print_head " Add user "
-rabbitmqctl add_user roboshop ${rabbit_mq_password}
+rabbitmqctl add_user roboshop ${rabbit_mq_password} &>> /tmp/roboshop.log
 #roboshop123
 func_stat_check $?
 
