@@ -23,7 +23,7 @@ func_stat_check $?
 #func_print_head "  RabbitMQ Service Status check  "
 #systemctl status rabbitmq-server
 #func_print_head " Completed RabbitMQ Service Status check  "
-
+func_print_head "Checking roboshop user exists "
 id roboshop &>> /tmp/roboshop.log
   #id gives 0 if user is there else it gives 1
   if [ $? -ne 0 ]; then
@@ -34,8 +34,6 @@ id roboshop &>> /tmp/roboshop.log
   else
     func_print_head "roboshop user already exists "
   fi
-
-
 
 
 func_print_head " Set the permissions to user  "
