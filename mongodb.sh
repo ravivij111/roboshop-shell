@@ -8,8 +8,11 @@ func_stat_check $?
 
 #Update listen address from 127.0.0.1 to 0.0.0.0 in /etc/mongod.conf
 sed -i -e 's|127.0.0.1|0.0.0.0|' /etc/mongod.conf
+func_print_head "  verify  /etc/mongod.conf whether 127.0.0.1|0.0.0.0 is replaced "
 systemctl enable mongod
-systemctl restart mongod& >> /tmp/roboshop.log
+systemctl restart mongod &>> /tmp/roboshop.log
 func_stat_check $?
+func_print_head " Checking the MongoDB status "
+systemctl status mongod
 
 func_print_head "  Completed MongoDB SetUp "
