@@ -29,4 +29,8 @@ func_stat_check $?
 func_print_head " Set the permissions to user  "
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>> /tmp/roboshop.log
 func_stat_check $?
+
+func_print_head " Checking RabbitMQ service status "
+systemctl status rabbitmq-server
+
 func_print_head " Completed MQ SetUp  "
