@@ -15,4 +15,7 @@ func_print_head "Replaced  Started Successfully "
 systemctl enable redis
 systemctl restart redis &>> /tmp/roboshop.log
 func_stat_check $?
+
+
+
 func_print_head " Redis Started and confirm by systemctl status redis "
