@@ -13,7 +13,6 @@ curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.
 yum install erlang -y
 func_print_head $?
 
-func_print_head " Install RabbitMQ "
 curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash  &>> /tmp/roboshop.log
 yum install rabbitmq-server -y &>> /tmp/roboshop.log
 func_stat_check $?
