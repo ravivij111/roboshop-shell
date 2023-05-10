@@ -13,7 +13,7 @@ func_stat_check(){
 }
 
 func_java(){
-printhead "Installing Maven"
+func_print_head "Installing Maven"
   yum install maven -y &>> $log_file
   func_stat_check $?
   func_app_prereq
