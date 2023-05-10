@@ -32,11 +32,11 @@ func_app_prereq(){
 
   rm -rf /app
   mkdir /app
-  func_print_head "Downloading the ${compenent}  zip"
+  func_print_head "Downloading the ${component}  zip"
   curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>> /tmp/roboshop.log
   func_stat_check $?
   cd /app
-   func_print_head "unzipping the ${compenent} files"
+   func_print_head "unzipping the ${component} files"
   unzip /tmp/${component}.zip &>> /tmp/roboshop.log
   func_stat_check $?
 
@@ -52,12 +52,12 @@ func_schema_setup(){
     yum install mongodb-org-shell -y &>> $log_file
     func_stat_check $?
     mongo --host mongodb-dev.r1devopsb.online </app/schema/${component}.js
-    printhead "Connected to MongoDB Successfully"
+    func_print_head "Connected to MongoDB Successfully"
   elif [ "$schema_setup" ==  "mysql" ]; then
     yum install mysql -y
     mysql -h mysql-dev.r1devopsb.online -uroot -p${mysql_root_password} < /app/schema/${component}.sql
     #RoboShop@1
-    printhead " Installed MySQL in ${component}  "
+    func_print_head " Installed MySQL in ${component}  "
   fi
 }
 
