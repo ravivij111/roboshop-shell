@@ -32,9 +32,13 @@ func_app_prereq(){
 
   rm -rf /app
   mkdir /app
+  func_print_head "Downloading the $compenent zip"
   curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
+  func_stat_check $?
   cd /app
+   func_print_head "unzipping the $compenent files"
   unzip /tmp/${component}.zip
+  func_stat_check $?
 
 }
 
@@ -65,7 +69,7 @@ func_nodejs(){
   func_stat_check $?
   func_app_prereq
   cd /app
-  rm -rf
+
   unzip /tmp/${component}.zip
   cd /app
    func_print_head "Installing the dependencies JS"
