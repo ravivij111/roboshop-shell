@@ -11,3 +11,4 @@ then
 fi
 
 func_java
+func_schema_setup
