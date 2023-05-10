@@ -4,5 +4,3 @@ source ${script_path}/common.sh
 schema_setup=mongo
 component=catalogue
 func_nodejs
-func_schema_setup
-func_print_head " Catalogue setup completed "
