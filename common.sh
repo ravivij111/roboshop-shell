@@ -64,7 +64,7 @@ func_nodejs(){
   unzip /tmp/${component}.zip
   cd /app
   npm install &>> $log_file
-  func_stat_check
+  func_stat_check $?
   func_print_head "Installed Dependencies"
   func_systemd_setup
   func_schema_setup
@@ -73,8 +73,9 @@ func_nodejs(){
 func_systemd_setup(){
   cp ${script_path}/${component}.service /etc/systemd/system/${component}.service
   systemctl daemon-reload
-  systemctl enable cart
+  systemctl enable ${component}
   systemctl restart ${component} &>> $log_file
+  systemctl status ${component}
   func_print_head ${component}" service started"
 }
 
