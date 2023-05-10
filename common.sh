@@ -59,7 +59,7 @@ func_schema_setup(){
 func_nodejs(){
 
   func_print_head "Installing Node JS"
-  curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+  curl -sL https://rpm.nodesource.com/setup_lts.x | bash  &>> $log_file
   yum install nodejs -y &>> $log_file
   func_stat_check $?
   func_app_prereq
