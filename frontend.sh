@@ -8,15 +8,14 @@ yum install nginx -y &>> /tmp/roboshop.log
 func_stat_check $?
 
 rm -rf /usr/share/nginx/html/*
-func_print_head " Removed the Files /usr/share/nginx/html/* "
+func_print_head " Downloading and unzipping the front end zip files "
 curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip &>> /tmp/roboshop.log
 cd /usr/share/nginx/html
 unzip /tmp/frontend.zip &>> /tmp/roboshop.log
 func_stat_check $?
 
 cp ${script_path}/roboshop.conf /etc/nginx/default.d/roboshop.conf
-func_print_head " Removed the Files /usr/share/nginx/html/* **************** "
+func_print_head " starting the nginx services **************** "
 systemctl enable nginx
 systemctl restart nginx
 func_stat_check $?
-func_print_head "  nginx started and confirm by systemctl status nginx  "
