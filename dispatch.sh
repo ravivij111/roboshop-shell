@@ -15,8 +15,9 @@ rm -rf /tmp/dispatch.zip
 func_print_head " download the dispatch Zip files "
 curl -L -o /tmp/dispatch.zip https://roboshop-artifacts.s3.amazonaws.com/dispatch.zip
 func_stat_check $?
-exit
+
 cd /app
+
 
 func_print_head " unzip dispatch Zip files "
 unzip /tmp/dispatch.zip
