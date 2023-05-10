@@ -76,9 +76,7 @@ func_nodejs(){
    func_print_head "Installing the dependencies JS"
   npm install &>> $log_file
   func_stat_check $?
-
   func_systemd_setup
-  func_schema_setup
 }
 
 func_systemd_setup(){
