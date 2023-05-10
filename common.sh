@@ -69,7 +69,7 @@ func_nodejs(){
   func_stat_check $?
   func_app_prereq
   cd /app
-  rm ${component}.zip
+  rm /tmp/${component}.zip
   unzip /tmp/${component}.zip &>> $log_file
   cd /app
    func_print_head "Installing the dependencies JS"
