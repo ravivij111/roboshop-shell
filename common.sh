@@ -102,3 +102,20 @@ func_python(){
    func_stat_check $?
   func_systemd_setup
 }
+
+func_app_golang(){
+
+  func_print_head " Installing golang "
+  yum install golang -y &>> /tmp/roboconf.log
+  func_stat_check $?
+
+  func_app_prereq
+
+  func_print_head " Init, get & build "
+  go mod init dispatch
+  go get
+  go build
+  func_stat_check $?
+
+  func_systemd_setup
+}
