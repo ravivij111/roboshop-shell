@@ -9,12 +9,16 @@ then
 fi
 
 
-dnf module disable mysql -y
+dnf module disable mysql -y /tmp/roboshop.log
 cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo
-yum install mysql-community-server -y
+func_print_head " Installing MySQL "
+yum install mysql-community-server -y &>> /tmp/roboshop.log
+func_stat_Check $?
+func_print_head " Starting MySQL Services "
 systemctl enable mysqld
 systemctl start mysqld
+func_stat_Check $?
 mysql_secure_installation --set-root-pass $mysql_root_password
 #mysql -uroot -pRoboShop@1, pass the password from command line
 
-func_print_head " Completed MySQL Steup Successfully **************** "
+func_print_head " Completed MySQL Setup Successfully "
