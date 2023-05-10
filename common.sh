@@ -32,11 +32,11 @@ func_app_prereq(){
 
   rm -rf /app
   mkdir /app
-  func_print_head "Downloading the '${compenent}'  zip"
+  func_print_head "Downloading the ${compenent}  zip"
   curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>> /tmp/roboshop.log
   func_stat_check $?
   cd /app
-   func_print_head "unzipping the '${compenent}' files"
+   func_print_head "unzipping the ${compenent} files"
   unzip /tmp/${component}.zip &>> /tmp/roboshop.log
   func_stat_check $?
 
@@ -46,9 +46,10 @@ func_print_head(){
    echo -e "\e[32m********* $* ****************\e[0m"
 }
 func_schema_setup(){
+  func_print_head " Schema set up started "
  if [ "$schema_setup" ==  "mongo" ]; then
     cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
-    yum install mongodb-org-shell -y
+    yum install mongodb-org-shell -y &>> $log_file
     func_stat_check $?
     mongo --host mongodb-dev.r1devopsb.online </app/schema/${component}.js
     printhead "Connected to MongoDB Successfully"
