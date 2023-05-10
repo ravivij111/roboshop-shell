@@ -17,7 +17,7 @@ func_print_head "Installing Maven"
   yum install maven -y &>> $log_file
   func_stat_check $?
   func_app_prereq
-  mvn clean package
+  mvn clean package  &>> $log_file
   mv target/${component}-1.0.jar ${component}.jar
   func_systemd_setup
 }
