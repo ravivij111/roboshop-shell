@@ -13,11 +13,11 @@ dnf module disable mysql -y /tmp/roboshop.log
 cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo
 func_print_head " Installing MySQL "
 yum install mysql-community-server -y &>> /tmp/roboshop.log
-func_stat_Check $?
+func_stat_check $?
 func_print_head " Starting MySQL Services "
 systemctl enable mysqld
 systemctl start mysqld
-func_stat_Check $?
+func_stat_check $?
 mysql_secure_installation --set-root-pass $mysql_root_password
 #mysql -uroot -pRoboShop@1, pass the password from command line
 
