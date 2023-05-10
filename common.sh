@@ -60,6 +60,7 @@ func_nodejs(){
 
   func_print_head "Installing Node JS"
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash  &>> $log_file
+  func_print_head " Downloaded the setup"
   yum install nodejs -y &>> $log_file
   func_stat_check $?
   func_app_prereq
