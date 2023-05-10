@@ -45,7 +45,7 @@ func_schema_setup(){
  if [ "$schema_setup" ==  "mongo" ]; then
     cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
     yum install mongodb-org-shell -y
-    func_stat_check
+    func_stat_check $?
     mongo --host mongodb-dev.r1devopsb.online </app/schema/${component}.js
     printhead "Connected to MongoDB Successfully"
   elif [ "$schema_setup" ==  "mysql" ]; then
@@ -57,15 +57,19 @@ func_schema_setup(){
 }
 
 func_nodejs(){
+
+  func_print_head "Installing Node JS"
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash
   yum install nodejs -y &>> $log_file
+  func_stat_check $?
   func_app_prereq
   cd /app
   unzip /tmp/${component}.zip
   cd /app
+   func_print_head "Installing the dependencies JS"
   npm install &>> $log_file
   func_stat_check $?
-  func_print_head "Installed Dependencies"
+
   func_systemd_setup
   func_schema_setup
 }
