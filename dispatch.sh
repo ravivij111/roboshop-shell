@@ -10,11 +10,13 @@ func_print_head " Creating the directory "
 mkdir /app
 func_stat_check $?
 
+rm -rf /tmp/dispatch.zip
+
 func_print_head " download the dispatch Zip files "
 curl -L -o /tmp/dispatch.zip https://roboshop-artifacts.s3.amazonaws.com/dispatch.zip
 func_stat_check $?
 cd /app
-rm -rf /tmp/dispatch.zip
+
 func_print_head " unzip dispatch Zip files "
 unzip /tmp/dispatch.zip
 func_stat_check $?
