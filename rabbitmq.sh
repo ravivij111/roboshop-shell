@@ -6,7 +6,7 @@ rabbit_mq_password=$1
 if [ -z "$rabbit_mq_password" ]
 then
   echo Imput Roboshop Appuser password is missing
-  exit
+  exit 1
 fi
 func_print_head " installing Erlang and Rabbit MQ  "
 curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
